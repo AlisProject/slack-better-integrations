@@ -1,0 +1,36 @@
+# Distribution / packaging
+.Python
+env/
+build/
+develop-eggs/
+dist/
+downloads/
+eggs/
+.eggs/
+lib/
+lib64/
+parts/
+sdist/
+var/
+*.egg-info/
+.installed.cfg
+*.egg
+__pycache__
+
+# Serverless directories
+.serverless
+
+# etc
+.idea
+.envrc
+venv
+node_modules
+_tmp*
+tmp*
+
+# app
+jira_slack_user_mappings.json.txt
+jira_user_mappings.json
+
+# layers
+layers/**/python

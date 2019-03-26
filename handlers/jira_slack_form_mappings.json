@@ -1,0 +1,20 @@
+{
+  "(y)": ":thumbsup:",
+  "(n)": ":thumbsdown:",
+  "(i)": ":information_source:",
+  "(/)": ":white_check_mark:",
+  "(x)": ":negative_squared_cross_mark:",
+  "(!)": ":warning:",
+  "(+)": ":heavy_plus_sign:",
+  "(-)": ":heavy_minus_sign:",
+  "(?)": ":question:",
+  "(on)": ":bulb:",
+  "(off)": ":bulb:",
+  "(*)": ":star:",
+  "(*r)": ":star:",
+  "(*g)": ":star:",
+  "(*b)": ":star:",
+  "(*y)": ":star:",
+  "(flag)": ":flags:",
+  "(flagoff)": ":flags:"
+}

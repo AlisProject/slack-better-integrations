@@ -1,0 +1,13 @@
+{
+  "jira_payload": $input.json('$'),
+  "jira_user_mappings": {
+    "jira_user_name1": {
+      "name": "slack_user_name1",
+      "id": "U8TLXXXXX"
+    },
+    "jira_user_name2": {
+      "name": "slack_user_name2",
+      "id": "U8TLXXXXX"
+    }
+  }
+}
