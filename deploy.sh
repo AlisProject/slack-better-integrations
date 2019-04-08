@@ -7,3 +7,8 @@ cd layers/common
 # Deploy
 cd ../..
 sls deploy
+
+# Notification for Mac
+if [ "$(uname)" == 'Darwin' ]; then
+  osascript -e 'display notification "Done." with title "Deploy Script"'
+fi

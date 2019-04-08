@@ -27,6 +27,7 @@ venv
 node_modules
 _tmp*
 tmp*
+*.swp
 
 # app
 jira_slack_user_mappings.json.txt

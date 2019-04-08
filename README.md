@@ -42,7 +42,7 @@ direnv edit
 # Deployment
 
 ```bash
-sls deploy
+./deploy.sh
 ```
 
 # Local test
