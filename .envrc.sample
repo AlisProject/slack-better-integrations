@@ -2,9 +2,6 @@
 # ServerlessアプリケーションのService名。CloudFormationのStack名にも利用される
 export SERVERLESS_SERVICE_NAME=slack-better-integrations
 
-export SLACK_INCOMING_WEBHOOK_ENDPOINT=https://hooks.slack.com/services/XXXXXXXXXXX/XXXXXXXXXX/xxxxxxxxxxxxxxxxxx
-
-
 # --- Slack ---
 export SLACK_API_TOKEN=xoxp-11111111111-111111111111-11111111111-xxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
 

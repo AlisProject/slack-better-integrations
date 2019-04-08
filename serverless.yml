@@ -43,10 +43,6 @@ provider:
 #            - "Ref" : "ServerlessDeploymentBucket"
 #            - "/*"
 
-# you can define service wide environment variables here
-  environment:
-    SLACK_INCOMING_WEBHOOK_ENDPOINT: ${env:SLACK_INCOMING_WEBHOOK_ENDPOINT}
-
 # you can add packaging information here
 #package:
 #  include:

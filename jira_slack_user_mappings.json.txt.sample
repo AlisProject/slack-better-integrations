@@ -1,5 +1,13 @@
 {
   "jira_payload": $input.json('$'),
+  "jira_project_mappings": {
+    "jira_project_key1": {
+      "slack_incomming_webhook" : "https://hooks.slack.com/services/XXXX/XXXXX/XXXXXX"
+    },
+    "jira_project_key2": {
+      "slack_incomming_webhook" : "https://hooks.slack.com/services/XXXX/XXXXX/XXXXXX"
+    }
+  },
   "jira_user_mappings": {
     "jira_user_name1": {
       "name": "slack_user_name1",

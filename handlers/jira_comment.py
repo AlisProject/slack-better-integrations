@@ -18,6 +18,9 @@ def handler(event, context):
     user_icon_url = event['jira_payload']['comment']['updateAuthor']['avatarUrls']['48x48']
     user_mappings = event['jira_user_mappings']
 
+    project_key = event['jira_project_mappings']['issue']['fields']['project']['id']
+    slack_webhook_url = event['jira_project_mappings'][project_key]
+
     comment_link = '\n\n<' + issue_url + '|`' + issue_key + ' ' + issue_summary + '`>'
 
     slack_user_name = user_mappings[comment_user]['name'] if comment_user in user_mappings else comment_user
@@ -25,11 +28,12 @@ def handler(event, context):
     comment = replace_mentions(user_mappings, comment)
     comment = convert_forms(comment)
 
-    post_message_to_slack({
-        'username': slack_user_name,
-        'icon_url': user_icon_url,
-        "text": comment + comment_link
-    })
+    post_message_to_slack(slack_webhook_url,
+                          {
+                              'username': slack_user_name,
+                              'icon_url': user_icon_url,
+                              "text": comment + comment_link
+                          })
 
     logger.info(event)
 
@@ -41,8 +45,8 @@ def create_issue_url(issue_api_url, issue_key):
     return domain + '/browse/' + issue_key
 
 
-def post_message_to_slack(payload):
-    result = requests.post(os.environ['SLACK_INCOMING_WEBHOOK_ENDPOINT'], data=json.dumps({
+def post_message_to_slack(webhook_url, payload):
+    result = requests.post(webhook_url, data=json.dumps({
         'username': payload['username'] if 'username' in payload is not None else u'unknown',
         'icon_url': payload['icon_url'] if 'icon_url' in payload is not None else u'unknown',
         'link_names': 1,
