@@ -18,8 +18,8 @@ def handler(event, context):
     user_icon_url = event['jira_payload']['comment']['updateAuthor']['avatarUrls']['48x48']
     user_mappings = event['jira_user_mappings']
 
-    project_key = event['jira_project_mappings']['issue']['fields']['project']['id']
-    slack_webhook_url = event['jira_project_mappings'][project_key]
+    project_key = event['jira_payload']['issue']['fields']['project']['key']
+    slack_webhook_url = event['jira_project_mappings'][project_key]['slack_incomming_webhook']
 
     comment_link = '\n\n<' + issue_url + '|`' + issue_key + ' ' + issue_summary + '`>'
 
