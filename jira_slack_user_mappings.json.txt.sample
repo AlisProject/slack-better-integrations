@@ -9,13 +9,17 @@
     }
   },
   "jira_user_mappings": {
-    "jira_user_name1": {
-      "name": "slack_user_name1",
-      "id": "U8TLXXXXX"
+    {
+      "jira_user_key": "jira_user_name1",
+      "jira_account_id": "5a7939b51xxxxxxxxxxxxxx",
+      "slack_name": "slack_user_name1",
+      "slack_id": "U8TLXXXXX"
     },
-    "jira_user_name2": {
-      "name": "slack_user_name2",
-      "id": "U8TLXXXXX"
+    {
+      "jira_user_key": "jira_user_name2",
+      "jira_account_id": "5a7939b51xxxxxxxxxxxxxx",
+      "slack_name": "slack_user_name2",
+      "slack_id": "U8TLXXXXX"
     }
   }
 }
