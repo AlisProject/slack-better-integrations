@@ -23,7 +23,7 @@ def handler(event, context):
 
     comment_link = '\n\n<' + issue_url + '|`' + issue_key + ' ' + issue_summary + '`>'
 
-    slack_user_name = user_mappings[comment_user]['name'] if comment_user in user_mappings else comment_user
+    slack_user_name = get_slack_user_name(user_mappings, comment_user)
 
     comment = replace_mentions(user_mappings, comment)
     comment = convert_forms(comment)
@@ -58,10 +58,19 @@ def post_message_to_slack(webhook_url, payload):
 
 def replace_mentions(user_mappings, comment):
     result = comment
-    for key, value in user_mappings.items():
-        result = result.replace('[~' + key + ']', '<@' + value['id'] + '>')
+    for mapping in user_mappings:
+      result = result.replace('[~' + mapping['jira_user_key'] + ']', '<@' + mapping['slack_id'] + '>')
+      result = result.replace('[~accountid:' + mapping['jira_account_id'] + ']', '<@' + mapping['slack_id'] + '>')
 
     return result
+
+def get_slack_user_name(user_mappings, comment_user):
+  result = comment_user
+  for mapping in user_mappings:
+    if comment_user == mapping['jira_user_key']:
+      result = mapping['slack_name']
+
+  return result
 
 
 def convert_forms(comment):

@@ -30,7 +30,7 @@ tmp*
 *.swp
 
 # app
-jira_slack_user_mappings.json.txt
+*.json.txt
 jira_user_mappings.json
 
 # layers
