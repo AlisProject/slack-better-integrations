@@ -91,12 +91,12 @@ custom:
 
 functions:
   jira_comment:
-    handler: handlers/jira_comment.handler
+    handler: handlers/jira/comment.handler
     layers:
       - {Ref: CommonLambdaLayer}
     events:
     - http:
-        path: messages/transfer
+        path: jira/comment
         method: post
         integration: lambda
         request: ${self:custom.standardRequest}
