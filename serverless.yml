@@ -17,11 +17,11 @@ service: ${env:SERVERLESS_SERVICE_NAME} # NOTE: update this with your service na
 # Check out our docs for more details
 # frameworkVersion: "=X.X.X"
 
-frameworkVersion: ">=1.39.1 <2.0.0"
+frameworkVersion: ">=1.41.1 <2.0.0"
 
 provider:
   name: aws
-  runtime: python3.6
+  runtime: python3.7
 
 # you can overwrite defaults here
 #  stage: dev
@@ -60,30 +60,27 @@ package:
     - .git/**
     - venv/**
     - tmp.*
-    - _tmp*
+    - .*
+    - _*
     - .envrc*
     - deploy.sh
     - .python-version
     - .git*
     - jira*
     - empty_event.json
+    - package.json
+    - requirements*
+    - yarn*
+    - node_modules/**
     - README.md
 
-#plugins:
-#  - serverless-python-requirements
-
-layers:
-  common:
-    path: layers/common
-    name: ${self:service}-common
-    compatibleRuntimes:
-      - python3.6
-    allowedAccounts:
-      - '*'
+plugins:
+  - serverless-python-requirements
 
 custom:
   pythonRequirements:
     dockerizePip: true
+    layer: true
   standardRequest:
     passThrough: NEVER
     template:
@@ -91,12 +88,12 @@ custom:
 
 functions:
   jira_comment:
-    handler: handlers/jira_comment.handler
+    handler: handlers/jira/comment.handler
     layers:
-      - {Ref: CommonLambdaLayer}
+      - {Ref: PythonRequirementsLambdaLayer}
     events:
     - http:
-        path: messages/transfer
+        path: jira/comment
         method: post
         integration: lambda
         request: ${self:custom.standardRequest}

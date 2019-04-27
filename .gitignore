@@ -35,3 +35,6 @@ jira_user_mappings.json
 
 # layers
 layers/**/python
+
+# yarn
+yarn-error.log

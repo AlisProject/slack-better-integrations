@@ -1,8 +1,7 @@
-JIRA - Slack better integration
+Slack better integration
 ===
 
 # Prerequisite
-- serverless
 - docker
 - direnv
 
@@ -20,7 +19,7 @@ vi jira_slack_user_mappings.json.txt
 ### For list Slack users
 
 ```bash
-pip install -r requirements.txt
+pip install -r requirements_env.txt
 
 # Add Slack API Token to `SLACK_API_TOKEN`
 direnv edit
@@ -31,7 +30,7 @@ direnv edit
 ### For list JIRA users
 
 ```bash
-pip install -r requirements.txt
+pip install -r requirements_env.txt
 
 # Add JIRA information to `JIRA_*`
 direnv edit
@@ -42,7 +41,7 @@ direnv edit
 # Deployment
 
 ```bash
-./deploy.sh
+yarn deploy
 ```
 
 # Local test
