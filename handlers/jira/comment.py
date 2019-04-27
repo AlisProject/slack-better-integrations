@@ -27,6 +27,7 @@ def handler(event, context):
 
   comment = replace_mentions(user_mappings, comment)
   comment = convert_forms(comment)
+  comment = convert_regex(comment)
 
   post_message_to_slack(slack_webhook_url,
                         {
@@ -82,5 +83,31 @@ def convert_forms(comment):
 
   for key, value in form_mappings.items():
     result = result.replace(key, value)
+
+  return result
+
+
+def convert_regex(comment):
+  result = comment
+
+  # Quotes
+  result = re.sub('\{quote\}', '```', result)
+
+  # Links
+  result = re.sub('\[([^|]+)\]', r'<\1>', result)
+  result = re.sub('\[([^[\]|]+?)\|([^[\]|]+?)\]', '<\\2|\\1>', result)
+
+  # Header TODO: fix
+  result = re.sub('^h[0-6]\.(\s*)([^\n|^$]*)', '*\\2*', result)
+  result = re.sub('\\nh[0-6]\.(\s*)([^\n|^$]*)', '\n*\\2*', result)
+
+  # Lists
+  result = re.sub('^[-|*|#]\s', '• ', result)
+  result = re.sub('\\n[-|*|#]\s', '\\n• ', result)
+  result = re.sub('\\n[-|*|#]{2}\s', '\n　• ', result)
+  result = re.sub('\\n[-|*|#]{3}\s', '\n　　• ', result)
+  result = re.sub('\\n[-|*|#]{4}\s', '\n　　　• ', result)
+  result = re.sub('\\n[-|*|#]{5}\s', '\n　　　　• ', result)
+  result = re.sub('\\n[-|*|#]{6}\s', '\n　　　　　• ', result)
 
   return result
