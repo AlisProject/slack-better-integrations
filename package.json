@@ -1,0 +1,23 @@
+{
+  "name": "slack-better-integrations",
+  "version": "1.0.0",
+  "description": "JIRA - Slack better integration ===",
+  "main": "tmp.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/AlisProject/slack-better-integrations.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/AlisProject/slack-better-integrations/issues"
+  },
+  "homepage": "https://github.com/AlisProject/slack-better-integrations#readme",
+  "dependencies": {
+    "serverless-python-requirements": "^4.3.0"
+  }
+}

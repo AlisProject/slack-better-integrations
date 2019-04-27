@@ -60,30 +60,25 @@ package:
     - .git/**
     - venv/**
     - tmp.*
-    - _tmp*
+    - _*
     - .envrc*
     - deploy.sh
     - .python-version
     - .git*
     - jira*
     - empty_event.json
+    - package.json
+    - requirements*
+    - yarn.*
     - README.md
 
-#plugins:
-#  - serverless-python-requirements
-
-layers:
-  common:
-    path: layers/common
-    name: ${self:service}-common
-    compatibleRuntimes:
-      - python3.6
-    allowedAccounts:
-      - '*'
+plugins:
+  - serverless-python-requirements
 
 custom:
   pythonRequirements:
     dockerizePip: true
+    layer: true
   standardRequest:
     passThrough: NEVER
     template:
@@ -93,7 +88,7 @@ functions:
   jira_comment:
     handler: handlers/jira/comment.handler
     layers:
-      - {Ref: CommonLambdaLayer}
+      - {Ref: PythonRequirementsLambdaLayer}
     events:
     - http:
         path: jira/comment
