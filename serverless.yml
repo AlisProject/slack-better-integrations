@@ -21,7 +21,7 @@ frameworkVersion: ">=1.39.1 <2.0.0"
 
 provider:
   name: aws
-  runtime: python3.6
+  runtime: python3.7
 
 # you can overwrite defaults here
 #  stage: dev
