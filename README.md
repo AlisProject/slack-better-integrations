@@ -1,8 +1,7 @@
-JIRA - Slack better integration
+Slack better integration
 ===
 
 # Prerequisite
-- serverless
 - docker
 - direnv
 
@@ -42,7 +41,7 @@ direnv edit
 # Deployment
 
 ```bash
-sls deploy
+yarn deploy
 ```
 
 # Local test
