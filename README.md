@@ -50,7 +50,7 @@ Add WebHook setting to GitHub.
   - Content Type: application/json
   - Which events would you like to trigger this webhook?:
     - Let me select individual events.:
-      - Commit comments
+      - Issue comments
       - Pull request review comments
 
 
