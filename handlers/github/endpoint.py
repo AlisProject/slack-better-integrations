@@ -10,8 +10,11 @@ logger.setLevel(logging.INFO)
 
 def handler(event, context):
   logger.info(event)
-
   payload = event['github_payload']
+
+  if __ignore(payload):
+    return 'ignore'
+
   comment = __comment(payload)
   comment_user = __user(payload)
   comment_url = __url(payload)
@@ -98,6 +101,13 @@ def __avatar_url(payload):
     result = payload['comment']['user']['avatar_url']
 
   return result
+
+
+def __ignore(payload):
+  if 'review' in payload and payload['action'] == 'edited':
+    return True
+
+  return False
 
 
 def post_message_to_slack(webhook_url, payload):
