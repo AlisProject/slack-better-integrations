@@ -17,7 +17,7 @@ service: ${env:SERVERLESS_SERVICE_NAME} # NOTE: update this with your service na
 # Check out our docs for more details
 # frameworkVersion: "=X.X.X"
 
-frameworkVersion: ">=1.41.1 <2.0.0"
+frameworkVersion: ">=1.42.3 <2.0.0"
 
 provider:
   name: aws
