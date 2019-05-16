@@ -23,8 +23,8 @@ provider:
   name: aws
   runtime: python3.7
 
-# you can overwrite defaults here
-#  stage: dev
+  # you can overwrite defaults here
+  #  stage: dev
   region: ap-northeast-1
 
 # you can add statements to the Lambda function's IAM Role here
@@ -81,10 +81,14 @@ custom:
   pythonRequirements:
     dockerizePip: true
     layer: true
-  standardRequest:
+  jiraRequest:
     passThrough: NEVER
     template:
       "application/json": ${file(./jira_slack_user_mappings.json.txt)}
+  gitHubRequest:
+    passThrough: NEVER
+    template:
+      "application/json": ${file(./github_payload_wrapper.json.txt)}
 
 functions:
   jira_comment:
@@ -92,11 +96,21 @@ functions:
     layers:
       - {Ref: PythonRequirementsLambdaLayer}
     events:
-    - http:
-        path: jira/comment
-        method: post
-        integration: lambda
-        request: ${self:custom.standardRequest}
+      - http:
+          path: jira/comment
+          method: post
+          integration: lambda
+          request: ${self:custom.jiraRequest}
+  github_endpoint:
+    handler: handlers/github/endpoint.handler
+    layers:
+      - {Ref: PythonRequirementsLambdaLayer}
+    events:
+      - http:
+          path: github/endpoint
+          method: post
+          integration: lambda
+          request: ${self:custom.gitHubRequest}
 
 #        request:
 #            template:
