@@ -11,14 +11,15 @@ logger.setLevel(logging.INFO)
 def handler(event, context):
   logger.info(event)
 
-  comment = event['github_payload']['comment']['body']
-  comment_user = event['github_payload']['comment']['user']['login']
-  comment_url = event['github_payload']['comment']['html_url']
+  payload = event['github_payload']
+  comment = __comment(payload)
+  comment_user = __user(payload)
+  comment_url = __url(payload)
 
-  issue_title = event['github_payload']['issue']['title']
-  repository = event['github_payload']['repository']['name']
+  issue_title = __title(payload)
+  repository = payload['repository']['name']
 
-  user_icon_url = event['github_payload']['comment']['user']['avatar_url']
+  user_icon_url = __avatar_url(payload)
   user_mappings = event['github_user_mappings']
 
   # todo: リポジトリごとに飛ばし分け
@@ -47,6 +48,56 @@ def handler(event, context):
 def create_issue_url(issue_api_url, issue_key):
   domain = re.match(r"https://.*atlassian.net", issue_api_url).group(0)
   return domain + '/browse/' + issue_key
+
+
+def __title(payload):
+  title = 'un_known'
+  if 'pull_request' in payload:
+    title = payload['pull_request']['title']
+  else:
+    title = payload['issue']['title']
+
+  return title
+
+
+def __comment(payload):
+  result = ''
+  if 'review' in payload:
+    result = payload['review']['body']
+  else:
+    result = payload['comment']['body']
+
+  return result
+
+
+def __user(payload):
+  result = ''
+  if 'review' in payload:
+    result = payload['review']['user']['login']
+  else:
+    result = payload['comment']['user']['login']
+
+  return result
+
+
+def __url(payload):
+  result = ''
+  if 'review' in payload:
+    result = payload['review']['html_url']
+  else:
+    result = payload['comment']['html_url']
+
+  return result
+
+
+def __avatar_url(payload):
+  result = ''
+  if 'review' in payload:
+    result = payload['review']['user']['avatar_url']
+  else:
+    result = payload['comment']['user']['avatar_url']
+
+  return result
 
 
 def post_message_to_slack(webhook_url, payload):
