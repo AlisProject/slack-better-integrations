@@ -28,7 +28,7 @@ def handler(event, context):
 
   slack_user_name = get_slack_user_name(user_mappings, comment_user)
 
-  # comment = replace_mentions(user_mappings, comment)
+  comment = replace_mentions(user_mappings, comment)
   # comment = convert_forms(comment)
   # comment = convert_regex(comment)
 
@@ -63,8 +63,7 @@ def post_message_to_slack(webhook_url, payload):
 def replace_mentions(user_mappings, comment):
   result = comment
   for mapping in user_mappings:
-    result = result.replace('[~' + mapping['github_user_key'] + ']', '<@' + mapping['slack_id'] + '>')
-    result = result.replace('[~accountid:' + mapping['github_account_id'] + ']', '<@' + mapping['slack_id'] + '>')
+    result = result.replace('@' + mapping['github_user_key'], '<@' + mapping['slack_id'] + '>')
 
   return result
 

@@ -1,0 +1,23 @@
+{
+  "github_payload": $input.json('$'),
+  "github_repository_mappings": {
+    "default": {
+      "slack_incomming_webhook": "https://hooks.slack.com/services/XXXX/XXXXX/XXXXXX"
+    },
+    "welcome": {
+      "slack_incomming_webhook": "https://hooks.slack.com/services/XXXX/XXXXX/XXXXXX"
+    }
+  },
+  "github_user_mappings": [
+    {
+      "github_user_key": "github_user_name1",
+      "slack_name": "slack_user_name1",
+      "slack_id": "U8TLXXXXX"
+    },
+    {
+      "github_user_key": "github_user_name2",
+      "slack_name": "slack_user_name2",
+      "slack_id": "U8TLXXXXX"
+    }
+  ]
+}
