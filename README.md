@@ -51,6 +51,7 @@ Add WebHook setting to GitHub.
   - Which events would you like to trigger this webhook?:
     - Let me select individual events.:
       - Issue comments
+      - Pull request reviews
       - Pull request review comments
 
 
