@@ -10,7 +10,7 @@ logger.setLevel(logging.INFO)
 
 def handler(event, context):
   comment = event['jira_payload']['comment']['body']
-  comment_user = event['jira_payload']['comment']['updateAuthor']['key']
+  comment_user = event['jira_payload']['comment']['updateAuthor']['accountId']
   issue_key = event['jira_payload']['issue']['key']
   issue_summary = event['jira_payload']['issue']['fields']['summary']
   issue_api_url = event['jira_payload']['issue']['self']
@@ -69,7 +69,7 @@ def replace_mentions(user_mappings, comment):
 def get_slack_user_name(user_mappings, comment_user):
   result = comment_user
   for mapping in user_mappings:
-    if comment_user == mapping['jira_user_key']:
+    if comment_user == mapping['jira_account_id']:
       result = mapping['slack_name']
 
   return result

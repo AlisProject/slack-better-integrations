@@ -61,6 +61,10 @@ Add WebHook setting to GitHub.
 yarn deploy
 ```
 
+# JIRA WebHook
+Add JIRA WebHook to generated API Gateway endpoint.
+- https://<YOUR_ACCOUNT_HERE>.atlassian.net/plugins/servlet/webhooks#
+
 # Local test
 
 - prerequisite: `python-lambda-local`
