@@ -27,7 +27,7 @@ def handler(event, context):
 
   comment = replace_mentions(user_mappings, comment)
   comment = convert_forms(comment)
-  comment = convert_regex(comment)
+  comment = convert_regex(comment, issue_url)
 
   post_message_to_slack(slack_webhook_url,
                         {
@@ -87,11 +87,14 @@ def convert_forms(comment):
   return result
 
 
-def convert_regex(comment):
+def convert_regex(comment, issue_url):
   result = comment
 
   # Quotes
   result = re.sub('\{quote\}', '```', result)
+
+  # Image
+  result = re.sub('\!.*\|.*\!', '<' + issue_url + '|:camera: 画像>', result)
 
   # Links
   result = re.sub('\|smart-link', '', result)
