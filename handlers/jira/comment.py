@@ -94,6 +94,7 @@ def convert_regex(comment):
   result = re.sub('\{quote\}', '```', result)
 
   # Links
+  result = re.sub('\|smart-link', '', result)
   result = re.sub('\[([^|]+)\]', r'<\1>', result)
   result = re.sub('\[([^[\]|]+?)\|([^[\]|]+?)\]', '<\\2|\\1>', result)
 
