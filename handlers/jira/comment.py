@@ -90,8 +90,9 @@ def convert_forms(comment):
 def convert_regex(comment, issue_url):
   result = comment
 
-  # Quotes
+  # Quotes/Panels
   result = re.sub('\{quote\}', '```', result)
+  result = re.sub('\{noformat\}', '```', result)
 
   # Image
   result = re.sub('\!.*\|.*\!', '<' + issue_url + '|:camera: 画像>', result)
