@@ -107,7 +107,7 @@ def convert_regex(comment, issue_url):
   result = re.sub('^h[0-6]\.(\s*)([^\n|^$]*)', '*\\2*', result)
   result = re.sub('\\nh[0-6]\.(\s*)([^\n|^$]*)', '\n*\\2*', result)
 
-  # Lists
+  # Lists (番号付きリストは#が並ぶだけであり少々面倒なのでただのリストに置換している)
   result = re.sub('^[-|*|#]\s', '• ', result)
   result = re.sub('\\n[-|*|#]\s', '\\n• ', result)
   result = re.sub('\\n[-|*|#]{2}\s', '\n　• ', result)
@@ -115,5 +115,13 @@ def convert_regex(comment, issue_url):
   result = re.sub('\\n[-|*|#]{4}\s', '\n　　　• ', result)
   result = re.sub('\\n[-|*|#]{5}\s', '\n　　　　• ', result)
   result = re.sub('\\n[-|*|#]{6}\s', '\n　　　　　• ', result)
+
+  # Bold/Italic etc
+  result = re.sub('(\*[^\n*]+\*)', ' \\1 ', result)
+  result = re.sub('\{color\}', '* ', result)
+  result = re.sub('\{color[^\n]*\}', ' *', result)
+  result = re.sub('-([^\n-]+)-', ' ~\\1~ ', result)
+  result = re.sub('\+([^\n-]+)\+', ' *\\1* ', result)
+  result = re.sub('\+([^\n-]+)\+', ' _\\1_ ', result)
 
   return result
