@@ -124,4 +124,7 @@ def convert_regex(comment, issue_url):
   result = re.sub('\+([^\n-]+)\+', ' *\\1* ', result)
   result = re.sub('\+([^\n-]+)\+', ' _\\1_ ', result)
 
+  # ADF format. *somethimes it happens.
+  result = re.sub('\{adf.*\"text\":\"(.*)\".*\{adf\}', '\\1', result)
+
   return result
