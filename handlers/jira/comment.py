@@ -127,4 +127,7 @@ def convert_regex(comment, issue_url):
   # ADF format. *somethimes it happens.
   result = re.sub('\{adf.*\"text\":\"(.*)\".*\{adf\}', '\\1', result)
 
+  # Incrementation
+  result = re.sub('\\\\!', '!', result)
+
   return result
