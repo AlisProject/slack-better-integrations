@@ -17,6 +17,10 @@ cp -p jira_slack_user_mappings.json.txt.sample jira_slack_user_mappings.json.txt
 vi jira_slack_user_mappings.json.txt
 ```
 
+## JIRA WebHook
+Add JIRA WebHook to generated API Gateway endpoint.
+- https://<YOUR_ACCOUNT_HERE>.atlassian.net/plugins/servlet/webhooks#
+
 ### Helper
 
 #### For list Slack users
@@ -61,10 +65,6 @@ Add WebHook setting to GitHub.
 ```bash
 npm run deploy
 ```
-
-# JIRA WebHook
-Add JIRA WebHook to generated API Gateway endpoint.
-- https://<YOUR_ACCOUNT_HERE>.atlassian.net/plugins/servlet/webhooks#
 
 # Local test
 
