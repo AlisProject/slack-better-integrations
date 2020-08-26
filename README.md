@@ -2,6 +2,7 @@ Slack better integration
 ===
 
 # Prerequisite
+- serverless
 - docker
 - direnv
 
@@ -14,7 +15,7 @@ cp -p jira_slack_user_mappings.json.txt.sample jira_slack_user_mappings.json.txt
 
 # Edit `jira_user_mappings`
 vi jira_slack_user_mappings.json.txt
-``` 
+```
 
 ### Helper
 
@@ -58,7 +59,7 @@ Add WebHook setting to GitHub.
 # Deployment
 
 ```bash
-yarn deploy
+npm run deploy
 ```
 
 # JIRA WebHook
@@ -74,8 +75,8 @@ pip install python-lambda-local
 ```
 
 - exec:
-  
+
 ```bash
 python-lambda-local -f hello handler.py empty_event.json
-``` 
- 
+```
+

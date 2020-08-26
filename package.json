@@ -4,9 +4,8 @@
   "description": "JIRA - Slack better integration ===",
   "main": "tmp.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
-    "deploy": "yarn serverless deploy",
-    "remove": "yarn serverless remove"
+    "deploy": "sls deploy",
+    "remove": "sls remove"
   },
   "repository": {
     "type": "git",
@@ -20,7 +19,6 @@
   },
   "homepage": "https://github.com/AlisProject/slack-better-integrations#readme",
   "devDependencies": {
-    "serverless": "^1.67.0",
     "serverless-python-requirements": "^5.1.0"
   }
 }
